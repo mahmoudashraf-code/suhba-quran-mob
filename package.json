@@ -1,8 +1,22 @@
 {
   "name": "quran-suhba",
-  "version": "0.0.1",
   "author": "Mahmoud Ashraf",
-  "homepage": "https://ionicframework.com/",
+  "homepage": "https://mahmoud-ashraf-theta.vercel.app/projects/quranic-suhba-app",
+  "version": "1.0.0",
+  "description": "A comprehensive Quran memorization and learning platform with multi-voice recitation, tafseer library, and group study features.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mahmoudashraf-code/suhba-quran-mob"
+  },
+  "license": "MIT",
+  "keywords": [
+    "quran",
+    "islamic",
+    "memorization",
+    "ionic",
+    "angular",
+    "tajweed"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +25,6 @@
     "test": "ng test",
     "lint": "ng lint"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^17.0.2",
     "@angular/common": "^17.0.2",
@@ -69,6 +82,5 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.2.2"
-  },
-  "description": "An Ionic project"
+  }
 }
