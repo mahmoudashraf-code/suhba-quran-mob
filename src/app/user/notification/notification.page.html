@@ -1,0 +1,18 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>الاشعارات</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-item button *ngFor="let note of data" (click)="notePage(note)" lines="full">
+    <ion-icon size="large" aria-hidden="true" name="notifications" slot="start"></ion-icon>
+    <ion-label>{{note.title}}</ion-label>
+  </ion-item>
+  <div class="h-full flex justify-content-center align-items-center">
+    <img src="/assets/notification.svg" class="w-full">
+  </div>
+</ion-content>

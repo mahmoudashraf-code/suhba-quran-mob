@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>الجولات</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="openTour()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let item of data" mode="ios" button (click)="openTour(item)">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-item lines="full">
+          <ion-icon size="large" aria-hidden="true" name="layers" slot="start"></ion-icon>
+          <ion-label>{{item.name}}</ion-label>
+          <ion-note slot="end">
+            <ion-chip color="primary">{{status[item.status]}}</ion-chip>
+          </ion-note>
+        </ion-item>
+      </ion-card-title>
+      <ion-card-subtitle>{{date(item.start)}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{ item.description }}
+    </ion-card-content>
+    <ion-button fill="clear" (click)="$event.stopPropagation();openTour(item)">تفاصيل الجولة</ion-button>
+    <ion-button fill="clear" color="danger" (click)="$event.stopPropagation();deleteTour(item)">حذف الجولة</ion-button>
+  </ion-card>
+</ion-content>

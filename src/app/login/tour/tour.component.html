@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>كيف ابد مع صحبة القران</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="swiper h-full" dir="rtl">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide flex align-items-center justify-content-center p-7 text-center gap-2">
+        <div>
+          <img src="/assets/users.svg" />
+          <ion-note color="primary">
+            <h1 class="py-3">كون مجموعتك</h1>
+          </ion-note>
+          <p class="text-xl">
+            كون الصحبة الصالحة وتجمعوا علي حفظ القران الكريم
+          </p>
+        </div>
+      </div>
+      <div class="swiper-slide flex align-items-center justify-content-center p-7 text-center gap-2">
+        <div>
+          <img src="/assets/contact.svg" />
+          <ion-note color="primary">
+            <h1 class="py-3">تواصل معنا</h1>
+          </ion-note>
+          <p class="text-xl">
+            <a href="https://wa.me/message/7ESXA4SVCYVUP1" target="_blank">تواصل معنا</a>
+            لإعداد حسابك الإداري والحصول على وصول إلى أدوات قوية لإدارة مبادراتك التعليمية القرآنية.
+          </p>
+        </div>
+      </div>
+      <div class="swiper-slide flex align-items-center justify-content-center p-7 text-center gap-2">
+        <div>
+          <img src="/assets/go.svg" />
+          <ion-note color="primary">
+            <h1 class="py-3">حقق التميز في تعليم القرآن</h1>
+          </ion-note>
+          <p class="text-xl">
+            دعنا نرشدك في رحلتك نحو إتقان القرآن. حدد أهدافًا طموحة، وتتبع تقدمك، وافتح الإمكانيات الكاملة لدراستك
+            للقرآن مع منصتنا الشاملة.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</ion-content>

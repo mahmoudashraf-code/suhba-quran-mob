@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{item.name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input label="العنوان" labelPlacement="floating" [(ngModel)]="item.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>بداية الجولة</ion-label>
+      {{ date(item.start) }}
+    </ion-item>
+    <ion-item>
+      <ion-label>نهاية الجولة</ion-label>
+      {{ date(item.end) }}
+    </ion-item>
+    <ion-item>
+      <ion-textarea cols="20" [autoGrow]="true" label="الوصف" labelPlacement="floating" [(ngModel)]="item.description">
+      </ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

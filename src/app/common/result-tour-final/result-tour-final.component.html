@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>نتيجة الجولة</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="swiper h-full" dir="rtl">
+    <div class="swiper-wrapper">
+      <div *ngFor="let ele of levels;index as i"
+        class="swiper-slide flex align-items-center justify-content-center p-7 text-center gap-2">
+        <div *ngIf="score[i] && getScore(score[i].score)>=70;else elseTemplate">
+          <img src="/assets/celebrating.svg" />
+          <ion-note color="primary">
+            <h1 class="py-3">{{ ele }}</h1>
+          </ion-note>
+          <p class="text-xl m-0">
+            {{ score[i]?.name }}
+          </p>
+        </div>
+        <ng-template #elseTemplate>
+          <div>
+            <img src="/assets/empty.svg" />
+          </div>
+        </ng-template>
+      </div>
+      <div class="swiper-slide">
+        <div class="overflow-auto">
+          <table (touchstart)="$event.stopPropagation()">
+            <thead>
+              <tr>
+                <th>الاسم</th>
+                <th *ngFor="let d of examDates">{{ date(d) }}</th>
+                <th>المجموع</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ele of score">
+                <td>{{ ele.name }}</td>
+                <td *ngFor="let d of examDates">
+                  {{ result[getGradeForDate(ele, d)] }}
+                </td>
+                <th>
+                  {{ getScore(ele.score).toFixed(2) }}%
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</ion-content>

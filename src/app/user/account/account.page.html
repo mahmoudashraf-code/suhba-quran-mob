@@ -1,0 +1,48 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>بيانات الحساب</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="settings()" color="primary">
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-thumbnail>
+    <img draggable="false" src="/assets/avatar.svg" />
+  </ion-thumbnail>
+  <ion-list *ngIf="user">
+    <ion-item>
+      <ion-input label="الاسم" labelPlacement="floating" placeholder="الاسم" [(ngModel)]="user.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="البريد الالكتروني" labelPlacement="floating" placeholder="البريد الالكتروني"
+        [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="الرقم السري" labelPlacement="floating" placeholder="الرقم السري"
+        [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="رقم الهاتف" labelPlacement="floating" placeholder="رقم الهاتف"
+        [(ngModel)]="user.phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="العنوان" labelPlacement="floating" placeholder="العنوان" [(ngModel)]="user.address"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="ion-margin ion-text-center">
+    <ion-button color="primary" fill="clear" (click)="save()">
+      <ion-icon slot="start" name="save"></ion-icon>
+      <b>حفظ</b>
+    </ion-button>
+  </div>
+  <div class="ion-margin ion-text-center">
+    <ion-button color="danger" fill="clear" (click)="logOut()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      <b>تسجيل الخروج</b>
+    </ion-button>
+  </div>
+</ion-content>

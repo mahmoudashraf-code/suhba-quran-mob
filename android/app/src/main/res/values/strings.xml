@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">صحبة القران</string>
+    <string name="title_activity_main">صحبة القران</string>
+    <string name="package_name">com.motanamy.suhba</string>
+    <string name="custom_url_scheme">com.motanamy.suhba</string>
+</resources>

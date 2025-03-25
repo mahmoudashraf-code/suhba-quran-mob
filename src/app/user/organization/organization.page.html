@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>بيانات الشركة</ion-title>
+    <ion-buttons slot="end" *ngIf="app.user?.type==='admin'">
+      <ion-button (click)="save()" color="primary">
+        <ion-icon name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-thumbnail>
+    <img src="/assets/about.svg" />
+  </ion-thumbnail>
+  <ion-list *ngIf="data">
+    <ion-item>
+      <ion-input label="اسم الشركة" labelPlacement="floating" [(ngModel)]="data.name"
+        [readonly]="app.user?.type!=='admin'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="رقم الجوال" labelPlacement="floating" [(ngModel)]="data.phone"
+        [readonly]="app.user?.type!=='admin'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="البريد الالكتروني" labelPlacement="floating" [(ngModel)]="data.email"
+        [readonly]="app.user?.type!=='admin'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="العنوان" labelPlacement="floating" [(ngModel)]="data.address"
+        [readonly]="app.user?.type!=='admin'"></ion-input>
+    </ion-item>
+  </ion-list>
+  <img src="/assets/company.svg" class="w-full">
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>البحث المتقدم</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar mode="ios">
+    <ion-searchbar placeholder="ابحث" (ionChange)="ionChange()" [(ngModel)]="search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let item of data" mode="ios" button (click)="openQuran(item.verse_key)">
+    <ion-card-header>
+      <ion-card-title>
+        <span>{{item.verse_key.split(":")[0].toString().padStart(3, '0')}}</span> 
+        <span>surah</span>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="aya flex flex-wrap gap-1">
+        <div [ngClass]="{'danger':word.highlight}" *ngFor="let word of item.words">{{ word.text }}</div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

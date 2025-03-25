@@ -1,0 +1,35 @@
+<div class="play fixed left-0 bottom-0 z-1 shadow-2 flex bg-white p-1 border-round right-0" *ngIf="show">
+  <div class="flex-1 text-center">
+    <ion-progress-bar mode="ios" dir="rtl" [value]="progress"></ion-progress-bar>
+    <div>
+      <ion-button size="small" fill="clear" (click)="selectRef?.open()">
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+      <ion-button size="small" fill="clear" (click)="audioFuns().decrease()">
+        <ion-icon slot="icon-only" name="play-forward"></ion-icon>
+      </ion-button>
+      <ng-container *ngIf="play;else pauseButton">
+        <ion-button size="small" fill="clear" (click)="audioFuns().pausePlayAudio('pause')">
+          <ion-icon slot="icon-only" name="pause"></ion-icon>
+        </ion-button>
+      </ng-container>
+      <ng-template #pauseButton>
+        <ion-button size="small" fill="clear" (click)="audioFuns().pausePlayAudio('play')">
+          <ion-icon slot="icon-only" name="play"></ion-icon>
+        </ion-button>
+      </ng-template>
+      <ion-button size="small" fill="clear" (click)="audioFuns().increase()">
+        <ion-icon slot="icon-only" name="play-back"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+  <ion-button size="small" fill="clear" color="danger" (click)="audioFuns().stopAudio($event)">
+    <ion-icon slot="icon-only" name="close"></ion-icon>
+  </ion-button>
+</div>
+<ion-select #mySelect mode="ios" label="القراء" okText="تمام" cancelText="الغاء" class="hidden"
+  (ionChange)="changeVoice()" [(ngModel)]="app.setting.recitations">
+  <ion-select-option *ngFor="let ele of recitations" [value]="ele.id">
+    {{ ele.translated_name.name }}
+  </ion-select-option>
+</ion-select>

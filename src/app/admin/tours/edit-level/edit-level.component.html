@@ -1,0 +1,47 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>بيانات المجموعة</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="level">
+    <ion-item>
+      <ion-input label="الاسم" labelPlacement="floating" placeholder="الاسم" [(ngModel)]="level.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select label="المشرفين" [multiple]="true" label-placement="fixed" [(ngModel)]="level.supervisor"
+        okText="تمام" cancelText="الغاء">
+        <ion-select-option [value]="state.id" *ngFor="let state of supervisor">{{state.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select label="الممتحن" label-placement="fixed" [(ngModel)]="level.examer" okText="تمام" cancelText="الغاء">
+        <ion-select-option [value]="state.id" *ngFor="let state of examer">{{state.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select label="المستخدمين" [multiple]="true" label-placement="fixed" [(ngModel)]="level.users" okText="تمام"
+        cancelText="الغاء">
+        <ion-select-option [value]="state.id" *ngFor="let state of users">{{state.name}}</ion-select-option>
+        <ion-select-option [value]="state.id" *ngFor="let state of supervisor">{{state.name}}</ion-select-option>
+        <ion-select-option [value]="state.id" *ngFor="let state of examer">{{state.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-textarea cols="20" [autoGrow]="true" label="الوصف" labelPlacement="floating" [(ngModel)]="level.description">
+      </ion-textarea>
+    </ion-item>
+  </ion-list>
+  <div class="ion-margin ion-text-center">
+    <ion-button color="primary" size="large" fill="outline" expand="block" (click)="save()" button>
+      <ion-icon slot="start" name="checkbox-outline"></ion-icon>
+      <b>حفظ</b>
+    </ion-button>
+  </div>
+</ion-content>

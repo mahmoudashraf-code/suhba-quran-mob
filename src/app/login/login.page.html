@@ -1,0 +1,28 @@
+<ion-content>
+  <div class="container flex flex-column md:flex-row h-full">
+    <header class="col-12 md:col-6 flex align-items-center justify-content-center">
+      <img src="assets/logo.png" class="p-5" draggable="false">
+    </header>
+    <div class="align-items-center flex col-12 md:col-6 right">
+      <form class="form col-12 md:col-6 w-full" [formGroup]="loginData">
+        <ion-item>
+          <ion-icon name="mail-outline"></ion-icon>
+          <ion-input formControlName="email" placeholder="الايميل" type="text" required>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <ion-input formControlName="password" placeholder="الرقم السرى" type="password" required></ion-input>
+        </ion-item>
+        <footer>
+          <ion-button class="ion-padding" color="primary" expand="block" (click)="onSubmit()">تسجيل الدخول</ion-button>
+          <app-quran-card></app-quran-card>
+          <ion-button color="primary" size="large" fill="outline" expand="block" (click)="tour()">
+            <ion-icon slot="start" name="book-outline"></ion-icon>
+            كيف ابد مع صحبة القران
+          </ion-button>
+        </footer>
+      </form>
+    </div>
+  </div>
+</ion-content>

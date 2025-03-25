@@ -1,0 +1,14 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>الرئيسية</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-tour></app-tour>
+  <app-quran-card></app-quran-card>
+  <app-save-and-review [history]="history" *ngIf="history"></app-save-and-review>
+  <div class="h-30rem flex justify-content-center align-items-end">
+    <img src="/assets/tours.svg" class="w-full">
+  </div>
+</ion-content>

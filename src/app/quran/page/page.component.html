@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar class="transparent-toolbar">
+    <header *ngIf="page[0]">
+      <div>
+        <span class="number">{{ app.formatToArabicNumeral(surah>-1?surah:chapter_id) }}</span>
+        <span style="font-family: surahnames;font-size: 22px;">
+          {{ surah>-1?surah.toString().padStart(3, '0'):chapter_id.toString().padStart(3, '0') }}
+        </span>
+      </div>
+      <div>
+        <span>صفحة</span>
+        <span>{{ app.formatToArabicNumeral(selectPage) }}</span>
+      </div>
+      <div>
+        <span>جزء</span>
+        <span>{{ app.formatToArabicNumeral(juz_number) }}</span>
+        <span>/</span>
+        <span>حزب</span>
+        <span>{{ app.formatToArabicNumeral(hizb_number) }}</span>
+        <span class="w-2rem inline-block"></span>
+        <ion-button size="small" fill="clear" (click)="closeEvent.emit()" class="absolute top-0 left-0">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </div>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+<div class="page" [ngClass]="{'center':isCenterAlignedPage(selectPage)}"
+  [ngStyle]="{'font-family': 'p'+selectPage+'-v1,UthmanicHafs','font-size':size+'vw'}">
+  <ng-container *ngFor="let line of page;index as i">
+    <div *ngIf="shouldShowChapterHeader(line[0])" class="chapter" (click)="surahAudio(line[0].location.split(':')[0])"
+      [ngClass]="{'hide':line[0].verse.chapter_id!==surah&&surah!==-1}">
+      <div class="surah">
+        <div>
+          <span>{{ line[0].location.split(":")[0].padStart(3, '0') }}</span>
+          <span>surah</span>
+        </div>
+      </div>
+      <img *ngIf="selectPage>1" src="/assets/bismillah.svg" />
+    </div>
+    <div class="line"
+      [ngClass]="{'center':isCenterAlignedPage(selectPage,line[0].line_number),'hide':line[0].verse.chapter_id!==surah&&surah!==-1}">
+      <div *ngFor="let word of line" (click)="openToolbar($event,word)"
+        [ngClass]="{'danger':isSelectKeywords(word.location),'brown':isHighlight(word.verse_key)}">
+        {{ word.text}}
+      </div>
+    </div>
+  </ng-container>
+</div>

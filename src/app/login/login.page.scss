@@ -1,0 +1,23 @@
+.container {
+    .right {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+    .form {
+        ion-icon {
+            margin: 0 5px;
+        }
+
+        ion-item {
+            --padding-start: 0;
+        }
+    }
+}
+
+ion-item {
+    border: 1px solid #e5e5e5;
+    margin: 16px;
+}
+
+ion-button {
+    margin: 16px;
+}

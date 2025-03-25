@@ -1,0 +1,75 @@
+<ion-header [translucent]="true" collapse="fade">
+  <ion-toolbar>
+    <ion-title>بيانات الجولة</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="tour">
+    <ion-item>
+      <ion-input label="الاسم" labelPlacement="floating" placeholder="الاسم" [(ngModel)]="tour.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select label="الحالة" label-placement="fixed" [(ngModel)]="tour.status" okText="تمام" cancelText="الغاء">
+        <ion-select-option [value]="state.id" *ngFor="let state of status">{{state.val}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>بداية الجولة</ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime presentation="date" id="datetime" [(ngModel)]="tour.start" locale="ar-EG"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-label>نهاية الجولة</ion-label>
+      <ion-datetime-button datetime="datetime125"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime presentation="date" id="datetime125" [(ngModel)]="tour.end" locale="ar-EG"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-textarea cols="20" [autoGrow]="true" label="الوصف" labelPlacement="floating" [(ngModel)]="tour.description">
+      </ion-textarea>
+    </ion-item>
+  </ion-list>
+  <div class="ion-margin ion-text-center">
+    <ion-button color="primary" size="large" fill="outline" expand="block" (click)="save()" button>
+      <ion-icon slot="start" name="checkbox-outline"></ion-icon>
+      <b>حفظ</b>
+    </ion-button>
+  </div>
+  <ng-container *ngIf="tour.id">
+    <ion-note>
+      <div class="mx-2 mt-2 text-xl text-center">المجموعات</div>
+    </ion-note>
+    <ion-button class="mx-3" color="primary" fill="outline" (click)="openLevel()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+    <ion-card *ngFor="let item of tour.levels" mode="ios" button (click)="openLevel(item)">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-item lines="full">
+            <ion-icon size="large" aria-hidden="true" name="layers" slot="start"></ion-icon>
+            <ion-label>{{item.name}}</ion-label>
+          </ion-item>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ item.description }}
+      </ion-card-content>
+      <ion-button fill="clear" (click)="$event.stopPropagation();result(item)">نتيجة الجولة</ion-button>
+      <ion-button fill="clear" color="danger" (click)="$event.stopPropagation();deleteLevel(item)">حذف
+        المجموعة</ion-button>
+    </ion-card>
+  </ng-container>
+</ion-content>

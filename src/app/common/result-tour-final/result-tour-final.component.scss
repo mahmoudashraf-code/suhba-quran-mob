@@ -1,0 +1,25 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: 130px;
+}
+
+th:first-child,
+td:first-child {
+  position: sticky;
+  right: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
+}
+
+.swiper-slide.flex > div {
+  max-width: 450px;
+}

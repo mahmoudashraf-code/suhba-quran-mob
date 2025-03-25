@@ -1,0 +1,61 @@
+<ng-container *ngIf="history.save.surah">
+  <ion-note>
+    <div class="mx-2 mt-2 text-xl text-center">مسار الحفظ</div>
+  </ion-note>
+  <ion-card mode="ios" button (click)="open(history.save,'save')">
+    <ion-card-header>
+      <ion-card-subtitle>{{date(history.date)}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <span class="surahnames">surah</span>
+          </ion-label>
+          <span class="surahnames">{{ history.save.surah.toString().padStart(3, '0') }}</span>
+        </ion-item>
+        <div class="flex">
+          <ion-item class="flex-1">
+            <ion-label>من</ion-label>
+            {{ app.formatToArabicNumeral(history.save.from) }}
+          </ion-item>
+          <ion-item class="flex-1">
+            <ion-label>الي</ion-label>
+            {{ app.formatToArabicNumeral(history.save.to) }}
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ng-container>
+
+<ng-container *ngIf="history.review.surah">
+  <ion-note>
+    <div class="mx-2 text-xl text-center">مسار المراجعة</div>
+  </ion-note>
+  <ion-card mode="ios" button (click)="open(history.review,'review')">
+    <ion-card-header>
+      <ion-card-subtitle>{{date(history.date)}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <span class="surahnames">surah</span>
+          </ion-label>
+          <span class="surahnames">{{ history.review.surah.toString().padStart(3, '0') }}</span>
+        </ion-item>
+        <div class="flex">
+          <ion-item class="flex-1">
+            <ion-label>من</ion-label>
+            {{ app.formatToArabicNumeral(history.review.from) }}
+          </ion-item>
+          <ion-item class="flex-1">
+            <ion-label>الي</ion-label>
+            {{ app.formatToArabicNumeral(history.review.to) }}
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ng-container>

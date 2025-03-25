@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>اعدادات القران الكريم</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="next()">
+        التالي
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="text-center">
+    <ion-button (click)="size=size+.1" color="primary" fill="clear">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+    <ion-button (click)="size=size-.1" color="primary" fill="clear">
+      <ion-icon name="remove"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="page" [ngStyle]="{'font-family': 'p3-v1,UthmanicHafs','font-size':size+'vw'}">
+    <ng-container *ngFor="let line of page;index as i">
+      <div class="line">
+        <div *ngFor="let word of line">
+          {{ word.text}}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

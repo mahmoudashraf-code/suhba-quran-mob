@@ -1,0 +1,14 @@
+<ion-content>
+  <div class="swiper" dir="rtl" #swiperEl>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let page of pages;index as i">
+        <ng-container *ngIf="stopAt>=i&&stopAt<=i+2">
+          <app-page [selectPage]="page" [surah]="surah" (openAudio)="audio.runAudio($event)" (closeEvent)="dismiss()"
+            [highlightKeywords]="highlightKeywords[page]" (saveHighlight)="saveHighlight(page,$event)"
+            [highlight]="highlight"></app-page>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <app-audio #voice></app-audio>
+</ion-content>

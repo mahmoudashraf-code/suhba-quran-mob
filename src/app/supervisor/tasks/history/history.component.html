@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>مسار الحفظ والمراجعة</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-note>
+    <div class="mx-2 mt-2 text-xl text-center">مسار الحفظ</div>
+  </ion-note>
+  <ion-card mode="ios">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-select (ionChange)="init('save',history.save.surah)" label="الصورة" label-placement="fixed"
+            [(ngModel)]="history.save.surah" okText="تمام" cancelText="الغاء">
+            <ion-select-option [value]="chapter.id" *ngFor="let chapter of chapters">
+              {{ chapter.name_arabic }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="flex">
+          <ion-item>
+            <ion-select label="من" [disabled]="!history.save.surah" label-placement="fixed" [(ngModel)]="history.save.from" okText="تمام"
+              cancelText="الغاء">
+              <ion-select-option [value]="aya" *ngFor="let aya of save">
+                {{ app.formatToArabicNumeral(aya) }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-select label="الي" [disabled]="!history.save.surah" label-placement="fixed" [(ngModel)]="history.save.to" okText="تمام"
+              cancelText="الغاء">
+              <ion-select-option [value]="aya" *ngFor="let aya of save">
+                {{ app.formatToArabicNumeral(aya) }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-note>
+    <div class="mx-2 text-xl text-center">مسار المراجعة</div>
+  </ion-note>
+  <ion-card mode="ios">
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-select (ionChange)="init('review',history.review.surah)" label="الصورة" label-placement="fixed"
+            [(ngModel)]="history.review.surah" okText="تمام" cancelText="الغاء">
+            <ion-select-option [value]="chapter.id" *ngFor="let chapter of chapters">
+              {{ chapter.name_arabic }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="flex">
+          <ion-item>
+            <ion-select label="من" [disabled]="!history.review.surah" label-placement="fixed" [(ngModel)]="history.review.from" okText="تمام"
+              cancelText="الغاء">
+              <ion-select-option [value]="aya" *ngFor="let aya of review">
+                {{ app.formatToArabicNumeral(aya) }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-select label="الي" [disabled]="!history.review.surah" label-placement="fixed" [(ngModel)]="history.review.to" okText="تمام"
+              cancelText="الغاء">
+              <ion-select-option [value]="aya" *ngFor="let aya of review">
+                {{ app.formatToArabicNumeral(aya) }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <div class="ion-margin ion-text-center">
+    <ion-button color="primary" size="large" fill="outline" expand="block" (click)="saveFun()" button>
+      <ion-icon slot="start" name="checkbox-outline"></ion-icon>
+      <b>حفظ المسار</b>
+    </ion-button>
+  </div>
+</ion-content>

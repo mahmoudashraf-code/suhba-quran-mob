@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>المسارات</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card mode="ios" *ngFor="let ele of history" button (click)="open(ele.save)">
+    <ion-card-header>
+      <ion-chip [color]="result[ele.result][1]">{{ result[ele.result][0] }}</ion-chip>
+      <ion-card-subtitle>{{date(ele.date)}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <span class="surahnames">surah</span>
+          </ion-label>
+          <span class="surahnames">{{ ele.save.surah.toString().padStart(3, '0') }}</span>
+        </ion-item>
+        <div class="flex">
+          <ion-item class="flex-1">
+            <ion-label>من</ion-label>
+            {{ app.formatToArabicNumeral(ele.save.from) }}
+          </ion-item>
+          <ion-item class="flex-1">
+            <ion-label>الي</ion-label>
+            {{ app.formatToArabicNumeral(ele.save.to) }}
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

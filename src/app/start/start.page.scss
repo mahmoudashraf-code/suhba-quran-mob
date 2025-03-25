@@ -1,0 +1,19 @@
+.page {
+  font-size: 6.2vw;
+  padding: 7px;
+  font-family: "UthmanicHafs";
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .line {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &.center {
+      justify-content: center;
+    }
+  }
+}

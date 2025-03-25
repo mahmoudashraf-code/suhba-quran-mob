@@ -1,0 +1,10 @@
+<div class="swiper pb-4" dir="rtl">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" *ngFor="let img of banner">
+      <a href="https://motanamy.com" target="_blank">
+        <img [src]="app.img(img)" />
+      </a>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>

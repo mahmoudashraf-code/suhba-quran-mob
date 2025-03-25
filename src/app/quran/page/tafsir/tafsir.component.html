@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>التفسير</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="$event.stopPropagation();modalController.dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-select (ionChange)="changeVal()" mode="ios" label="التفسير" label-placement="fixed" okText="تمام"
+      cancelText="الغاء" [(ngModel)]="slug">
+      <ion-select-option [value]="t.slug" *ngFor="let t of tafsirs">{{t.translated_name.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div [innerHTML]="text"></div>
+</ion-content>
