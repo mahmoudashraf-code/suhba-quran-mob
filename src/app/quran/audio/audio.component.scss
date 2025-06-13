@@ -1,0 +1,342 @@
+.modern-audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #1a4d3a 0%, #2d5016 25%, #b8860b 100%);
+    backdrop-filter: blur(20px);
+    border-radius: 25px 25px 0 0;
+    box-shadow: 0 -15px 40px rgba(184, 134, 11, 0.3);
+    padding: 24px 20px;
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #ffd700 0%, #b8860b 50%, #ffd700 100%);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: rgba(255, 215, 0, 0.6);
+        border-radius: 2px;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.audio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.progress-section {
+    position: relative;
+    padding: 0 8px;
+
+    .custom-progress {
+        height: 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+        position: relative;
+
+        --progress-background: linear-gradient(90deg, #ffd700 0%, #b8860b 100%);
+        --buffer-background: rgba(255, 215, 0, 0.3);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.1) 2px,
+                    rgba(255, 255, 255, 0.1) 4px);
+            pointer-events: none;
+        }
+    }
+}
+
+.controls-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+}
+
+.control-btn {
+    --background: rgba(255, 215, 0, 0.15);
+    --background-hover: rgba(255, 215, 0, 0.25);
+    --color: #ffd700;
+    --border-radius: 50%;
+    --padding-start: 0;
+    --padding-end: 0;
+    --box-shadow: 0 4px 15px rgba(184, 134, 11, 0.2);
+    width: 52px;
+    height: 52px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+        transform: scale(1.08) translateY(-2px);
+        --background: rgba(255, 215, 0, 0.3);
+        --box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
+
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    ion-icon {
+        font-size: 26px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+}
+
+.secondary-btn {
+    .skip-text {
+        position: absolute;
+        bottom: -3px;
+        right: -3px;
+        background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+        color: #1a4d3a;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(184, 134, 11, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
+
+.play-pause-btn {
+    --background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+    --background-hover: linear-gradient(135deg, #ffed4e 0%, #daa520 100%);
+    --color: #1a4d3a;
+    --border-radius: 50%;
+    --padding-start: 0;
+    --padding-end: 0;
+    --box-shadow: 0 8px 30px rgba(184, 134, 11, 0.4);
+    width: 72px;
+    height: 72px;
+    margin: 0 12px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, #ffd700, #b8860b, #ffd700);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+        transform: scale(1.12) translateY(-3px);
+        --box-shadow: 0 12px 40px rgba(184, 134, 11, 0.6);
+
+        &::before {
+            opacity: 0.7;
+        }
+    }
+
+    &.playing {
+        --background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+        --background-hover: linear-gradient(135deg, #e55563 0%, #c73650 100%);
+        --color: white;
+        animation: pulse 2s infinite;
+    }
+
+    .play-icon {
+        font-size: 36px;
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 30px rgba(184, 134, 11, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 8px 30px rgba(184, 134, 11, 0.6), 0 0 20px rgba(220, 53, 69, 0.4);
+    }
+}
+
+.reader-btn {
+    --background: rgba(72, 187, 120, 0.15);
+    --background-hover: rgba(72, 187, 120, 0.25);
+    --color: #48bb78;
+
+    ion-icon {
+        font-size: 22px;
+    }
+
+    &:hover {
+        --color: #38a169;
+    }
+}
+
+.close-btn {
+    --background: rgba(245, 101, 101, 0.15);
+    --background-hover: rgba(245, 101, 101, 0.25);
+    --color: #f56565;
+
+    &:hover {
+        --color: #e53e3e;
+        --background: rgba(245, 101, 101, 0.3);
+    }
+}
+
+// Islamic geometric pattern overlay
+.controls-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, transparent 40%, rgba(255, 215, 0, 0.05) 41%, rgba(255, 215, 0, 0.05) 45%, transparent 46%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+// Dark mode support
+.ios body.dark .modern-audio-player,
+.md body.dark .modern-audio-player {
+    background: linear-gradient(135deg, #0f2419 0%, #1a2e0a 25%, #8b6914 100%);
+    box-shadow: 0 -15px 40px rgba(139, 105, 20, 0.4);
+
+    .control-btn {
+        --background: rgba(255, 215, 0, 0.12);
+        --background-hover: rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.15);
+    }
+
+    .play-pause-btn {
+        --background: linear-gradient(135deg, #e6c200 0%, #9d7c0a 100%);
+        --color: #0f2419;
+        border-color: rgba(255, 255, 255, 0.2);
+
+        &:hover {
+            --background: linear-gradient(135deg, #ffed4e 0%, #b8860b 100%);
+        }
+    }
+
+    .reader-btn {
+        --background: rgba(56, 161, 105, 0.12);
+        --background-hover: rgba(56, 161, 105, 0.2);
+        --color: #68d391;
+    }
+
+    .close-btn {
+        --background: rgba(229, 62, 62, 0.12);
+        --background-hover: rgba(229, 62, 62, 0.2);
+        --color: #fc8181;
+    }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+    .modern-audio-player {
+        padding: 20px 16px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .control-btn {
+        width: 48px;
+        height: 48px;
+
+        ion-icon {
+            font-size: 22px;
+        }
+    }
+
+    .play-pause-btn {
+        width: 64px;
+        height: 64px;
+
+        .play-icon {
+            font-size: 32px;
+        }
+    }
+
+    .controls-section {
+        gap: 12px;
+    }
+
+    .secondary-btn .skip-text {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+    }
+}
+
+// Enhanced button press animations
+.control-btn:active {
+    transform: scale(0.92) translateY(1px);
+    transition: all 0.1s ease;
+}
+
+.play-pause-btn:active {
+    transform: scale(1.05) translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+.hidden {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    z-index: -1;
+}

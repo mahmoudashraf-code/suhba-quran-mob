@@ -11,6 +11,7 @@ import { iVoice } from 'src/app/quran/audio/audio.component';
 })
 export class ResultComponent {
   history: any;
+  postId: string = '';
   result = [
     {
       id: 'A',
@@ -44,6 +45,9 @@ export class ResultComponent {
     this.app.loading().then((res) => {
       this.app.post('history', {
         id: this.history.id,
+        post: {
+          id: this.postId,
+        },
         save: {
           ...this.history.save,
           extra: this.history.save.extra,

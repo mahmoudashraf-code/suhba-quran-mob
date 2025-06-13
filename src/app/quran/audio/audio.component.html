@@ -1,34 +1,76 @@
-<div class="play fixed left-0 bottom-0 z-1 shadow-2 flex bg-white p-1 border-round right-0" *ngIf="show">
-  <div class="flex-1 text-center">
-    <ion-progress-bar mode="ios" dir="rtl" [value]="progress"></ion-progress-bar>
-    <div>
-      <ion-button size="small" fill="clear" (click)="selectRef?.open()">
-        <ion-icon name="person"></ion-icon>
+<div class="modern-audio-player" *ngIf="show">
+  <div class="islamic-pattern-top"></div>
+  
+  <div class="audio-content">
+    <div class="progress-section">
+      <ion-progress-bar 
+        mode="ios" 
+        dir="rtl" 
+        [value]="progress"
+        class="custom-progress">
+      </ion-progress-bar>
+    </div>
+    
+    <div class="controls-section">
+      <ion-button 
+        fill="clear" 
+        class="control-btn reader-btn"
+        (click)="selectRef?.open()"
+        [attr.aria-label]="'اختيار القارئ'">
+        <ion-icon name="person-outline"></ion-icon>
       </ion-button>
-      <ion-button size="small" fill="clear" (click)="audioFuns().decrease()">
-        <ion-icon slot="icon-only" name="play-forward"></ion-icon>
+      
+      <ion-button 
+        fill="clear" 
+        class="control-btn secondary-btn"
+        (click)="audioFuns().decrease()"
+        [attr.aria-label]="'الرجوع 10 ثواني'">
+        <ion-icon name="play-skip-back-outline"></ion-icon>
+        <span class="skip-text">10</span>
       </ion-button>
-      <ng-container *ngIf="play;else pauseButton">
-        <ion-button size="small" fill="clear" (click)="audioFuns().pausePlayAudio('pause')">
-          <ion-icon slot="icon-only" name="pause"></ion-icon>
-        </ion-button>
-      </ng-container>
-      <ng-template #pauseButton>
-        <ion-button size="small" fill="clear" (click)="audioFuns().pausePlayAudio('play')">
-          <ion-icon slot="icon-only" name="play"></ion-icon>
-        </ion-button>
-      </ng-template>
-      <ion-button size="small" fill="clear" (click)="audioFuns().increase()">
-        <ion-icon slot="icon-only" name="play-back"></ion-icon>
+      
+      <ion-button 
+        fill="solid" 
+        class="play-pause-btn"
+        [class.playing]="play"
+        (click)="audioFuns().pausePlayAudio(play ? 'pause' : 'play')"
+        [attr.aria-label]="play ? 'إيقاف مؤقت' : 'تشغيل'">
+        <ion-icon 
+          [name]="play ? 'pause' : 'play'" 
+          class="play-icon">
+        </ion-icon>
+      </ion-button>
+      
+      <ion-button 
+        fill="clear" 
+        class="control-btn secondary-btn"
+        (click)="audioFuns().increase()"
+        [attr.aria-label]="'التقدم 10 ثواني'">
+        <ion-icon name="play-skip-forward-outline"></ion-icon>
+        <span class="skip-text">10</span>
+      </ion-button>
+      
+      <ion-button 
+        fill="clear" 
+        class="control-btn close-btn"
+        (click)="audioFuns().stopAudio($event)"
+        [attr.aria-label]="'إغلاق المشغل'">
+        <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </div>
   </div>
-  <ion-button size="small" fill="clear" color="danger" (click)="audioFuns().stopAudio($event)">
-    <ion-icon slot="icon-only" name="close"></ion-icon>
-  </ion-button>
 </div>
-<ion-select #mySelect mode="ios" label="القراء" okText="تمام" cancelText="الغاء" class="hidden"
-  (ionChange)="changeVoice()" [(ngModel)]="app.setting.recitations">
+
+<ion-select 
+  #mySelect 
+  mode="ios" 
+  label="اختيار القارئ" 
+  placeholder="اختر القارئ المفضل"
+  okText="تأكيد" 
+  cancelText="إلغاء" 
+  class="hidden islamic-select"
+  (ionChange)="changeVoice()" 
+  [(ngModel)]="app.setting.recitations">
   <ion-select-option *ngFor="let ele of recitations" [value]="ele.id">
     {{ ele.translated_name.name }}
   </ion-select-option>
